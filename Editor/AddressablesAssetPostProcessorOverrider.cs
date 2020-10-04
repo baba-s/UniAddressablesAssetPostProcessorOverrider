@@ -22,7 +22,11 @@ namespace Kogane.Internal
 			//EditorApplication.update += () => AddressablesAssetPostProcessor.OnPostProcess = OnPostprocessAllAssets;
 			EditorApplication.delayCall += () =>
 			{
-				Debug.Log( "AddressablesAssetPostProcessor.OnPostProcess を上書きしました" );
+				var settings = AddressablesAssetPostProcessorOverriderSettings.GetInstance();
+				if ( settings.EnabledLog )
+				{
+					Debug.Log( settings.LogMessage );
+				}
 				AddressablesAssetPostProcessor.OnPostProcess = OnPostprocessAllAssets;
 			};
 		}
